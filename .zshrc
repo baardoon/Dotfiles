@@ -24,8 +24,19 @@ function rmk(){
 	shred -zun 10 -v $1
 }
 
+function vpnup(){
+	wg-quick up nl
+}
+
+function vpndown(){
+	wg-quick down nl
+}
+
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
+bindkey  "^[[H"   beginning-of-line
+bindkey  "^[[F"   end-of-line
+bindkey  "^[[3~"  delete-char
 
 # Fix Nvim Cursor
 _fix_cursor() {
@@ -33,3 +44,6 @@ _fix_cursor() {
 }
 
 precmd_functions+=(_fix_cursor)
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+source /usr/bin/zsh-plugins/sudo.plugin.zsh
